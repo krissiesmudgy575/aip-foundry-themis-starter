@@ -1,0 +1,66 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Proof Bundle
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - "**"
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  proof-bundle:
+    name: Validate and Publish Proof Bundle
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            examples/osdk-react-app/package-lock.json
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install React demo dependencies
+        working-directory: examples/osdk-react-app
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Export demo proof artifacts
+        run: npm run export:demo
+
+      - name: Build React demo
+        working-directory: examples/osdk-react-app
+        run: npm run build
+
+      - name: Package demo bundle
+        run: npm run package:demo
+
+      - name: Upload demo export artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: demo-export
+          path: artifacts/demo-export
+          if-no-files-found: error
+
+      - name: Upload packaged demo bundle
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: demo-package
+          path: .release/aip-foundry-themis-starter-demo.zip
+          if-no-files-found: error

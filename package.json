@@ -1,0 +1,49 @@
+{
+  "name": "aip-foundry-themis-starter",
+  "version": "0.1.0",
+  "description": "Unofficial TypeScript example for deterministic local contract tests around Foundry-oriented workflows.",
+  "license": "MIT",
+  "author": {
+    "name": "Vitron AI",
+    "url": "https://vitron.ai"
+  },
+  "homepage": "https://github.com/vitron-ai/aip-foundry-themis-starter#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitron-ai/aip-foundry-themis-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vitron-ai/aip-foundry-themis-starter/issues"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "demo:handoff": "tsx examples/eval-handoff-example.ts",
+    "demo:osdk": "tsx examples/osdk-client-example.ts",
+    "export:demo": "tsx scripts/export-demo.mjs",
+    "generate": "themis generate src",
+    "package:demo": "node scripts/package-demo.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "themis test",
+    "test:watch": "themis test --watch --isolation in-process --cache --reporter next"
+  },
+  "keywords": [
+    "typescript",
+    "foundry",
+    "aip",
+    "themis",
+    "testing",
+    "contract-testing",
+    "schema-validation",
+    "osdk"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@vitronai/themis": "^0.1.15",
+    "@types/node": "^24.5.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "zod": "^4.1.5"
+  }
+}

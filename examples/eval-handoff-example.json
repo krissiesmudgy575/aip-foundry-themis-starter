@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "0.1",
+  "useCase": "intake-triage",
+  "scenarioId": "demo-triage-needs-review",
+  "localContractOutcome": "pass",
+  "request": {
+    "prompt": "Triage an inbound dispute and decide whether to escalate it.",
+    "conversationId": "demo-conversation",
+    "caseId": "case-demo-002",
+    "targetQueue": "operations-triage",
+    "useCase": "intake-triage",
+    "requestedAt": "2026-03-28T20:00:00.000Z"
+  },
+  "responseContext": {
+    "caseId": "case-demo-002",
+    "requestId": "req-demo-002",
+    "source": "function",
+    "modelName": "gpt-4.1-mini",
+    "latencyMs": 1042,
+    "retryCount": 1,
+    "fallbackUsed": true
+  },
+  "expectedContract": {
+    "type": "normalized-result",
+    "value": {
+      "status": "needs_review",
+      "summary": "The transaction metadata is incomplete and needs analyst review.",
+      "score": 0.66,
+      "priority": "medium",
+      "recommendedAction": "queue_for_review",
+      "queue": "manual-review",
+      "customerMessage": "We received your request and routed it for analyst review.",
+      "caseId": "case-demo-002",
+      "requestId": "req-demo-002",
+      "source": "function",
+      "warnings": [
+        "Merchant category code was missing from the payload."
+      ],
+      "telemetry": {
+        "receivedAt": null,
+        "modelName": "gpt-4.1-mini",
+        "latencyMs": 1042,
+        "retryCount": 1,
+        "fallbackUsed": true
+      }
+    }
+  },
+  "suggestedEvalDimensions": [
+    "triage_accuracy",
+    "priority_assignment",
+    "customer_message_quality",
+    "fallback_recovery"
+  ],
+  "suggestedAssertions": [
+    "The model assigns the correct triage priority for the case.",
+    "The recommended action is consistent with the normalized queue.",
+    "The customer-facing message is safe, concise, and aligned with the case outcome."
+  ],
+  "localArtifacts": {
+    "testFiles": [
+      "tests/resultNormalizer.test.ts",
+      "tests/failure-modes.test.ts",
+      "tests/evalHandoffBuilder.test.ts"
+    ],
+    "docs": [
+      "docs/how-it-fits-with-aip-evals.md",
+      "docs/integration-guide.md"
+    ],
+    "examples": [
+      "examples/osdk-client-example.ts",
+      "examples/eval-handoff-example.ts",
+      "examples/eval-handoff-example.json"
+    ]
+  }
+}

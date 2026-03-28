@@ -1,0 +1,196 @@
+:root {
+  color: #f6efe3;
+  background:
+    radial-gradient(circle at top left, rgba(233, 180, 76, 0.16), transparent 28%),
+    radial-gradient(circle at top right, rgba(97, 192, 191, 0.12), transparent 24%),
+    linear-gradient(180deg, #0c1b26 0%, #142734 48%, #0d141b 100%);
+  font-family: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 72px;
+}
+
+.hero {
+  padding: 28px;
+  border: 1px solid rgba(246, 239, 227, 0.12);
+  border-radius: 28px;
+  background: rgba(7, 14, 20, 0.58);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+  animation: rise-in 420ms ease-out;
+}
+
+.eyebrow,
+.summary-label,
+.metric-label {
+  margin: 0 0 8px;
+  color: #9cd2d4;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.hero h1,
+.summary-panel h2,
+.json-card h2 {
+  font-family: "Space Grotesk", "Avenir Next Condensed", "Trebuchet MS", sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.4rem, 6vw, 4.7rem);
+  line-height: 0.95;
+}
+
+.hero-copy {
+  max-width: 62ch;
+  margin: 18px 0 0;
+  color: #d7d1c7;
+  font-size: 1.05rem;
+}
+
+.hero-grid,
+.cards-grid,
+.pill-row {
+  display: grid;
+  gap: 16px;
+}
+
+.hero-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-top: 24px;
+}
+
+.metric-card,
+.json-card,
+.summary-panel {
+  border: 1px solid rgba(246, 239, 227, 0.12);
+  border-radius: 22px;
+  background: rgba(14, 28, 39, 0.86);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+.metric-card {
+  padding: 16px 18px;
+}
+
+.metric-card strong {
+  display: block;
+  font-size: 1.15rem;
+}
+
+.summary-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+  padding: 20px 24px;
+}
+
+.summary-panel h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+}
+
+.pill-row {
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+}
+
+.pill {
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: #0e171f;
+  background: linear-gradient(135deg, #f5c86e 0%, #f0e1b3 100%);
+  font-weight: 700;
+}
+
+.cards-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 22px;
+}
+
+.json-card {
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(246, 239, 227, 0.08);
+  background: rgba(22, 45, 61, 0.75);
+}
+
+.json-card h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.json-card pre {
+  margin: 0;
+  padding: 18px;
+  color: #dce6dc;
+  font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+  font-size: 0.82rem;
+  overflow-x: auto;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    width: min(100% - 20px, 1180px);
+    padding-top: 20px;
+  }
+
+  .hero,
+  .summary-panel {
+    padding: 18px;
+  }
+
+  .summary-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pill-row {
+    grid-auto-flow: row;
+  }
+}
+

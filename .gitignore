@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+.themis/
+__themis__/
+.release/
+artifacts/
+.DS_Store
+*.log
